@@ -18,6 +18,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      - name: pwd
+        uses: pwd && ls 
       - name: chmod 
         run: chmod +x ./build-images.sh
       - name: build Images
