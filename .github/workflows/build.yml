@@ -19,7 +19,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: chmod 
-        run: ls && chmod +x ./build-images.sh
+        run: ls && chmod +x ./build-image.sh
       - name: build Images
         run: ./build-image.sh
       - name: Upload artifact
