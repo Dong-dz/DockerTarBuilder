@@ -19,7 +19,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: pwd
-        run: pwd && ls
+        run: pwd
+      - name: ls
+        run: ls
+      - name: cd 
+        run: cd workfloes
+      - name: ls
+        run: ls
       - name: chmod 
         run: chmod +x ./build-images.sh
       - name: build Images
