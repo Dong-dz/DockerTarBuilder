@@ -1,11 +1,11 @@
 name: build Image
 on:
   workflow_dispatch:
-    inputs:
-      docker_images:
-        description: '请填写docker镜像名称 '
-        required: true
-        default: 'ros:noetic-dong'  # 设置默认的 Docker  
+    # inputs:
+    #   docker_images:
+    #     description: '请填写docker镜像名称 '
+    #     required: true
+    #     default: 'ros:noetic-dong'  # 设置默认的 Docker  
 
 jobs:
   pull_and_package:
