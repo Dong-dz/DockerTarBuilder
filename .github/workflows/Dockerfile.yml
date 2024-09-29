@@ -11,10 +11,10 @@ jobs:
   pull_and_package:
     runs-on: ubuntu-latest
     
-    defaults:
-      run:
+    #defaults:
+      #run:
         #shell: bash
-        working-directory: ./script
+        #working-directory: ./script
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
