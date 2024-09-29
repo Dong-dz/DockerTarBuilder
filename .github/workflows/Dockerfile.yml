@@ -5,7 +5,7 @@ on:
       docker_images:
         description: '请填写docker镜像名称 '
         required: true
-        default: 'alpine:latest'  # 设置默认的 Docker  
+        default: 'ros:noetic_dong'  # 设置默认的 Docker  
 
 jobs:
   pull_and_package:
