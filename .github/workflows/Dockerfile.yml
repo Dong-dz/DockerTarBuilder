@@ -5,7 +5,7 @@ on:
       docker_images:
         description: '请填写docker镜像名称 '
         required: true
-        default: 'ros:noetic_dong'  # 设置默认的 Docker  
+        default: 'ros:noetic-dong'  # 设置默认的 Docker  
 
 jobs:
   pull_and_package:
@@ -21,7 +21,7 @@ jobs:
       - name: chmod 
         run: ls && chmod +x ./build-images.sh
       - name: build Images
-        run: ./build-images.sh
+        run: ./build-image.sh
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
