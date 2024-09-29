@@ -11,23 +11,15 @@ jobs:
   pull_and_package:
     runs-on: ubuntu-latest
     
-    #defaults:
-      #run:
+    defaults:
+      run:
         #shell: bash
-        #working-directory: ./script
+        working-directory: ./.github/workflows/script
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: pwd
-        run: pwd
-      - name: ls
-        run: ls -a
-      - name: cd 
-        run: cd .github
-      - name: ls
-        run: ls
       - name: chmod 
-        run: chmod +x ./build-images.sh
+        run: ls && chmod +x ./build-images.sh
       - name: build Images
         run: ./build-images.sh
       - name: Upload artifact
