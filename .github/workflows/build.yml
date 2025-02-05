@@ -25,8 +25,8 @@ jobs:
       - name: build Images
         run: ./build-image.sh
         
-      - name: Compress the TAR files
-        run: tar -czf x86-64-images.tar.gz *-amd64.tar
+      # - name: Compress the TAR files
+      #   run: tar -czf x86-64-images.tar.gz *-amd64.tar
         
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -35,6 +35,6 @@ jobs:
           path: x86-64-image.tar.gz
           retention-days: 1  # 将保留天数设置为 1 天 最多可设置90天
           
-      - name: Clean up intermediate files
-        run: |
-          rm *-amd64.tar
+      # - name: Clean up intermediate files
+      #   run: |
+      #     rm *-amd64.tar
