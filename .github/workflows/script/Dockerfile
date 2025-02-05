@@ -1,2 +1,26 @@
-FROM ubuntu:20.04
-RUN sudo apt install -y ros-noetic-desktop-full && sudo apt install -y ros-noetic-navigation && sudo apt install -y ros-noetic-joy && sudo apt install -y ros-noetic-gazebo-ros-control && sudo apt install -y ros-noetic-joint-state-controller && sudo apt install -y ros-noetic-position-controllers && sudo apt install -y ros-noetic-effort-controllers && sudo apt install -y ros-noetic-cv-bridge && sudo apt install -y ros-noetic-controller-manager && sudo apt install -y ros-noetic-hector-mapping && sudo apt install -y ros-noetic-gmapping
+# 使用 Python 3.11 slim 版本作为基础镜像
+FROM python:3.11-slim
+
+# 设置工作目录
+WORKDIR /app
+
+# 设置环境变量
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1
+
+# 安装依赖
+RUN pip install --no-cache-dir \
+    aiohttp==3.11.11 \
+    colorlog==6.9.0 \
+    fastapi==0.115.8 \
+    python-dotenv==1.0.1 \
+    "uvicorn[standard]"
+
+# 复制项目文件
+COPY ./app ./app
+
+# 暴露端口
+EXPOSE 8000
+
+# 启动命令
+CMD ["python", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
