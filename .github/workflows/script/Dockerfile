@@ -1,26 +1,22 @@
-# 使用 Python 3.11 slim 版本作为基础镜像
-FROM python:3.11-slim
+from nginx:1.25
+# 安装cron和logrotate
+RUN apt-get update && \
+    apt-get install -y cron && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
-# 设置工作目录
-WORKDIR /app
+# 配置logrotate
+COPY nginx-logrotate /etc/logrotate.d/nginx
 
-# 设置环境变量
-ENV PYTHONUNBUFFERED=1 \
-    PYTHONDONTWRITEBYTECODE=1
+# 设置定时任务（每天1点执行日志轮转）
+RUN echo "0 1 * * * root /usr/sbin/logrotate -f /etc/logrotate.d/nginx" > /etc/cron.d/nginx-logrotate
 
-# 安装依赖
-RUN pip install --no-cache-dir \
-    aiohttp==3.11.11 \
-    colorlog==6.9.0 \
-    fastapi==0.115.8 \
-    python-dotenv==1.0.1 \
-    "uvicorn[standard]"
+# 设置cron日志和权限
+RUN chmod 0644 /etc/cron.d/nginx-logrotate && \
+    touch /var/log/cron.log
 
-# 复制项目文件
-COPY ./app ./app
+# 启动脚本
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
-# 暴露端口
-EXPOSE 8000
-
-# 启动命令
-CMD ["python", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+ENTRYPOINT ["/entrypoint.sh"]
