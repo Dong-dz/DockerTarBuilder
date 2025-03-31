@@ -20,7 +20,7 @@ jobs:
         run: ./build-image.sh
 
       - name: 压缩镜像
-        run: tar -czf images.tar.gz *.tar
+        run: tar -czf images.tar.gz *.tar  && ls 
 
       - name: 上传脚本
         uses: actions/upload-artifact@v4
