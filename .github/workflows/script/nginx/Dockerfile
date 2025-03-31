@@ -1,7 +1,7 @@
 from nginx:1.25
 # 安装cron和logrotate
 RUN apt-get update && \
-    apt-get install -y cron vim procps && \
+    apt-get install -y cron vim procps logrotate && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
