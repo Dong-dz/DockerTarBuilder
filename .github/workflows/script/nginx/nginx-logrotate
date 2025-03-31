@@ -1,7 +1,9 @@
 /etc/nginx/logs/*.log {
+    su root root 
     daily
     missingok
     rotate 2
+    maxage 2 
     compress
     delaycompress
     notifempty
