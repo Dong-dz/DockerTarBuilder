@@ -18,12 +18,31 @@
 # RUN gem install redis-dump redis-load
 
  
-# 使用官方Ruby镜像作为基础镜像
-FROM ruby:2.7
+# # 使用官方Ruby镜像作为基础镜像
+# FROM ruby:2.7
 
-# 安装必要的依赖包
-RUN apt-get update && \
-    apt-get install -y build-essential libpq-dev  && rm -rf /var/cache/apt/*
+# # 安装必要的依赖包
+# RUN apt-get update && \
+#     apt-get install -y build-essential libpq-dev  && rm -rf /var/cache/apt/*
 
-# 安装redis-dump和redis-load
-RUN gem install redis-dump
+# # 安装redis-dump和redis-load
+# RUN gem install redis-dump
+
+
+
+FROM golang:1.21-alpine AS builder
+WORKDIR /app
+COPY . .
+RUN go mod download
+RUN go build -o redis-shake ./cmd/redis-shake
+
+FROM alpine:latest
+WORKDIR /app
+COPY --from=builder /app/redis-shake .
+COPY shake_sync_env.toml .
+COPY shake_scan_env.toml .
+COPY entrypoint.sh .
+
+RUN chmod +x entrypoint.sh
+
+ENTRYPOINT ["/bin/sh", "entrypoint.sh"]
