@@ -7,5 +7,5 @@
 # # 安装依赖前清理残留文件（可选）
 # RUN rm -rf node_modules package-lock.json  &&  npm install redis-dump -g 
 
-from ruby:3.5.0-preview1-alpine3.20
+from ruby:3.1-alpine3.20
 run  gem install redis-dump -V   && gem install  redis-load -V
