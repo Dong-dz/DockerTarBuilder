@@ -13,4 +13,4 @@ RUN apk add --no-cache \
     make \
     gcc \
     musl-dev
-run  gem install redis-dump    && gem install  redis-load 
+run  gem install redis-dump   
