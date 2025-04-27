@@ -8,4 +8,4 @@
 # RUN rm -rf node_modules package-lock.json  &&  npm install redis-dump -g 
 
 from ruby:3.5.0-preview1-alpine3.20
-run  gem sources --remove https://rubygems.org/  && gem sources -a https://ruby.taobao.org/  && gem install redis-dump redis-load -V  
+run  gem sources --remove https://rubygems.org/  && gem sources -a https://ruby.taobao.org/  && gem install redis-dump -V   && gem install  redis-load -V
