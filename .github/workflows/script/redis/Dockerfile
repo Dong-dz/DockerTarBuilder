@@ -7,18 +7,23 @@
 # # 安装依赖前清理残留文件（可选）
 # RUN rm -rf node_modules package-lock.json  &&  npm install redis-dump -g 
 
+# 使用 Ruby 3.0.7 Alpine 镜像
 FROM ruby:3.0.7-alpine
 
 # 安装必要的依赖项
 RUN apk update && \
-    apk add  \
+    apk add --no-cache \
     git \
-    build-essential \
-    python3-pip \
-    libffi-dev
+    build-base \               # Alpine 的等效包，代替 build-essential
+    python3 \
+    py3-pip \
+    libffi-dev \
+    redis \
+    make
 
-# 安装 redis gem 和 redis-dump
+# 安装 redis gem 和 redis-dump gem
 RUN gem install redis && \
     gem install redis-dump
-    
+
+
 
