@@ -9,14 +9,21 @@
 
 
 
-# 基于官方的 Node.js 镜像创建
-FROM node:16
+# 使用官方 Redis 镜像作为基础镜像
+FROM redis:latest
 
-# 设置工作目录
-WORKDIR /app
+# 安装 redis-dump 和 redis-load 工具
+RUN apt-get update && \
+    apt-get install -y \
+    git \
+    build-essential \
+    python3 \
+    python3-pip && \
+    pip3 install redis-dump redis-load && \
+    rm -rf /var/lib/apt/lists/*
 
-# 安装 redis-dump 和 redis-load
-RUN npm install -g redis-dump redis-load
+# 设置默认的工作目录
+WORKDIR /data
 
-# 提供默认命令，打印 redis-dump 和 redis-load 的版本
-CMD ["sh", "-c", "echo 'redis-dump version:' && redis-dump --version && echo 'redis-load version:' && redis-load --version"]
+# 默认启动命令，可以根据需要修改
+CMD ["redis-server"]
