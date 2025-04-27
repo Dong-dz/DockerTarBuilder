@@ -5,7 +5,5 @@ FROM node:14-alpine
 WORKDIR /app
 
 # 安装依赖前清理残留文件（可选）
-RUN rm -rf node_modules package-lock.json
+RUN rm -rf node_modules package-lock.json  &&  npm install redis-dump -g 
 
-# 安装 redis-dump（附加修复参数）
-RUN npm install redis-dump --legacy-peer-deps --force
