@@ -9,7 +9,7 @@
 
 
 # 基础镜像（推荐使用官方Redis镜像）
-FROM redis:7.0-alpine
+FROM redis:5.0.14
 
 # 安装依赖项
 RUN apk update && apk add --no-cache \
