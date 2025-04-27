@@ -7,23 +7,21 @@
 # # 安装依赖前清理残留文件（可选）
 # RUN rm -rf node_modules package-lock.json  &&  npm install redis-dump -g 
 
-# 第一阶段：构建环境（安装编译工具）
+
+# 构建阶段
 FROM ruby:3.1-alpine3.20 AS builder
 
-# 安装编译依赖并清理缓存（单层操作减少体积）
-RUN apk add --no-cache \
-    ruby-dev \
-    make \
-    gcc \
-    musl-dev \
+RUN apk add --no-cache ruby-dev make gcc musl-dev \
  && gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/ \
- && gem install yajl-ruby -v 1.4.1 --platform=ruby --no-document && gem install redis -v 5.0.0 --no-document && gem install redis-dump -v 0.6.1 --no-document
+ && gem install --no-document \
+    redis -v 4.4.0 \
+    yajl-ruby -v 1.4.1 \
+    redis-dump -v 0.6.1
 
-# 第二阶段：运行环境（仅复制必要文件）
+# 运行阶段
 FROM ruby:3.1-alpine3.20
 
-# 从构建阶段复制已安装的 gem
+RUN apk add --no-cache ruby-uri ruby-json  # 关键修复
 COPY --from=builder /usr/local/bundle/ /usr/local/bundle/
 
-# 验证工具链
 CMD ["redis-dump", "--version"]
