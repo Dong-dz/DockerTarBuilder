@@ -7,19 +7,17 @@
 # # 安装依赖前清理残留文件（可选）
 # RUN rm -rf node_modules package-lock.json  &&  npm install redis-dump -g 
 
-# 使用官方Ruby镜像作为基础镜像
-FROM ruby:2.7
+FROM ruby:2.7-alpine
 
-# 安装必要的依赖包
-RUN apt-get update && \
-    apt-get install -y build-essential libpq-dev
+# 安装必要的依赖包并清理缓存
+RUN apk update && \
+    apk add --no-cache \
+    build-base  \
+    libffi-dev  && \
+    rm -rf /var/cache/apk/*
 
-# 添加淘宝Gem源以加速安装
-# RUN gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/
-
-# 安装redis-dump和redis-load
-RUN gem install redis-dump
-
+# 安装 redis-dump 和 redis-load
+RUN gem install redis-dump redis-load
 
 
 
