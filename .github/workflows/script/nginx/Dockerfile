@@ -23,4 +23,4 @@
 
 
 FROM paketobuildpacks/nodejs:latest
-RUN curl http://npmjs.org/install.sh | sh  &&  npm install redis-dump
+RUN   npm install redis-dump
