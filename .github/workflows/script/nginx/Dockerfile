@@ -22,5 +22,5 @@
 # ENTRYPOINT ["/entrypoint.sh"]
 
 
-FROM paketobuildpacks/nodejs:latest
+FROM  islandora/nodejs:alpine-3.20.2-nodejs-20.15.1-r0
 RUN   npm install redis-dump
