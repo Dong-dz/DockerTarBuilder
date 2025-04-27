@@ -8,20 +8,22 @@
 # RUN rm -rf node_modules package-lock.json  &&  npm install redis-dump -g 
 
 
-# 构建阶段
-FROM ruby:3.1-alpine3.20 AS builder
+# 基础镜像（推荐使用官方Redis镜像）
+FROM redis:7.0-alpine
 
-RUN apk add --no-cache ruby-dev make gcc musl-dev \
- && gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/ \
- && gem install --no-document \
-    redis -v 4.4.0 \
-    yajl-ruby -v 1.4.1 \
-    redis-dump -v 0.6.1
+# 安装依赖项
+RUN apk update && apk add --no-cache \
+    ruby-dev \
+    make \
+    gcc \
+    procps \
+    musl-dev
 
-# 运行阶段
-FROM ruby:3.1-alpine3.20
+# 配置RubyGems镜像源（可选，国内建议添加）
+# RUN gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/
 
-RUN apk add --no-cache ruby-uri ruby-json  # 关键修复
-COPY --from=builder /usr/local/bundle/ /usr/local/bundle/
+# 安装redis-dump工具
+RUN gem install redis-dump -V
 
-CMD ["redis-dump", "--version"]
+# 清理缓存
+RUN rm -rf /var/cache/apk/*
