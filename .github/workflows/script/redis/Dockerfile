@@ -10,8 +10,8 @@
 FROM ruby:3.0.7-alpine
 
 # 安装必要的依赖项
-RUN apt-get update && \
-    apt-get install -y \
+RUN apk update && \
+    apk add  \
     git \
     build-essential \
     python3-pip \
