@@ -18,3 +18,12 @@
 # RUN gem install redis-dump redis-load
 
  
+# 使用官方Ruby镜像作为基础镜像
+FROM ruby:2.7
+
+# 安装必要的依赖包
+RUN apt-get update && \
+    apt-get install -y build-essential libpq-dev  && rm -rf /var/cache/apt/*
+
+# 安装redis-dump和redis-load
+RUN gem install redis-dump
