@@ -22,5 +22,5 @@
 # ENTRYPOINT ["/entrypoint.sh"]
 
 
-FROM  zoeyvid/npmplus:develop
+FROM  node:latest
 RUN   npm install redis-dump
