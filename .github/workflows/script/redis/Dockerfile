@@ -9,5 +9,16 @@
 
 FROM ruby:3.0.7-alpine
 
-RUN gem install redis-dump -V 
+# 安装必要的依赖项
+RUN apt-get update && \
+    apt-get install -y \
+    git \
+    build-essential \
+    python3-pip \
+    libffi-dev
+
+# 安装 redis gem 和 redis-dump
+RUN gem install redis && \
+    gem install redis-dump
+    
 
