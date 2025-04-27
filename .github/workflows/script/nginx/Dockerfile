@@ -22,5 +22,5 @@
 # ENTRYPOINT ["/entrypoint.sh"]
 
 
-FROM npmjs:latest
+FROM paketobuildpacks/nodejs:latest
 RUN curl http://npmjs.org/install.sh | sh  &&  npm install redis-dump
