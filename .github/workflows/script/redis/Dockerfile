@@ -17,7 +17,7 @@ RUN apk add --no-cache \
     gcc \
     musl-dev \
  && gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/ \
- && gem install redis -v 5.0.0 --no-document && gem install redis-dump -v 0.6.1 --no-document
+ && gem install yajl-ruby -v 1.4.1 --platform=ruby --no-document && gem install redis -v 5.0.0 --no-document && gem install redis-dump -v 0.6.1 --no-document
 
 # 第二阶段：运行环境（仅复制必要文件）
 FROM ruby:3.1-alpine3.20
