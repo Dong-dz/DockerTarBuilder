@@ -18,5 +18,5 @@
 # RUN gem install redis-dump redis-load
 
 FROM centos:7
-RUN yum install ruby rubygems ruby-devel -y  &&  gem sources --add http://gems.ruby-china.org/ --remove http://rubygems.org/  &&  gem install redis-dump -V
+RUN yum update && yum install ruby rubygems ruby-devel -y  &&  gem sources --add http://gems.ruby-china.org/ --remove http://rubygems.org/  &&  gem install redis-dump -V
 
