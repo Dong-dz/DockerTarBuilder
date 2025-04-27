@@ -5,5 +5,5 @@
 # docker save -o nginx.tar nginx:1.25_logrotate 
 
 
-docker build  --platform linux/arm64 --tag redis_dump:20250427
+docker build  --platform linux/arm64 --tag redis_dump:20250427 .
 docker save -o redisdump.tar redis_dump:20250427
