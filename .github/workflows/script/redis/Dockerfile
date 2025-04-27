@@ -8,4 +8,9 @@
 # RUN rm -rf node_modules package-lock.json  &&  npm install redis-dump -g 
 
 from ruby:3.1-alpine3.20
-run  gem install redis-dump -V   && gem install  redis-load -V
+RUN apk add --no-cache \
+    ruby-dev \
+    make \
+    gcc \
+    musl-dev
+run  gem install redis-dump    && gem install  redis-load 
