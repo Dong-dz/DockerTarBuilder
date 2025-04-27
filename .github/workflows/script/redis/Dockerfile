@@ -7,17 +7,16 @@
 # # 安装依赖前清理残留文件（可选）
 # RUN rm -rf node_modules package-lock.json  &&  npm install redis-dump -g 
 
-FROM ruby:2.7-alpine
+# FROM ruby:2.7-alpine
+# # 安装必要的依赖包并清理缓存
+# RUN apk update && \
+#     apk add --no-cache \
+#     build-base  \
+#     libffi-dev  && \
+#     rm -rf /var/cache/apk/*
+# # 安装 redis-dump 和 redis-load
+# RUN gem install redis-dump redis-load
 
-# 安装必要的依赖包并清理缓存
-RUN apk update && \
-    apk add --no-cache \
-    build-base  \
-    libffi-dev  && \
-    rm -rf /var/cache/apk/*
-
-# 安装 redis-dump 和 redis-load
-RUN gem install redis-dump redis-load
-
-
+FROM centos:7
+RUN yum install ruby rubygems ruby-devel -y  &&  gem sources --add http://gems.ruby-china.org/ --remove http://rubygems.org/  &&  gem install redis-dump -V
 
