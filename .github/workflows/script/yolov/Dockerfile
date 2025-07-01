@@ -32,8 +32,7 @@ RUN conda env create -f environment.yml && conda clean -afy
 # 设置 SHELL 以便 conda activate 能生效
 SHELL ["/bin/bash", "-c"]
 
-# 安装 Python 依赖
-RUN conda activate myenv 
+RUN source activate myenv 
 
 # 默认使用环境中的 Python
 ENV PATH /opt/conda/envs/myenv/bin:$PATH
