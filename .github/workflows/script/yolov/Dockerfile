@@ -33,9 +33,8 @@ RUN conda install -y gxx_linux-64 && \
 # 设置 SHELL 以便 conda activate 能生效
 SHELL ["/bin/bash", "-c"]
 # 安装 Python 依赖
-RUN conda activate myenv && \
-    pip install --upgrade pip && \
-    pip install -r requirements.txt
+RUN conda activate myenv 
+
 # 默认使用环境中的 Python
 ENV PATH /opt/conda/envs/myenv/bin:$PATH
 
