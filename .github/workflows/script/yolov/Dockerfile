@@ -24,7 +24,7 @@ COPY environment.yml /app/
 COPY requirements.txt /app/
 
 # 安装系统编译工具
-RUN apt-get update && apt-get install -y build-essential
+RUN apt-get update && apt-get install -y build-essential  libgl1 net-tools vim 
 
 # 创建 Conda 环境
 RUN conda env create -f environment.yml && conda clean -afy
