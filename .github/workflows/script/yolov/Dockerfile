@@ -9,7 +9,8 @@ COPY requirements.txt /app/requirements.txt
 
 RUN conda env create -f environment.yml && \
     conda clean -afy && \
-    /bin/bash -c "source activate myenv && pip install --upgrade pip && pip install  -r requirements.txt "
+    /bin/bash -c "source activate myenv "
+#/bin/bash -c "source activate myenv && pip install --upgrade pip && pip install  -r requirements.txt "
 
 
 ENV PATH /opt/conda/envs/myenv/bin:$PATH
