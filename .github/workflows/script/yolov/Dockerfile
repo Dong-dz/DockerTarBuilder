@@ -19,19 +19,19 @@
 
 
 FROM continuumio/miniconda3:25.3.1-1
-
-RUN apt-get update && apt-get install -y build-essential
-
 WORKDIR /app
 COPY environment.yml /app/
 COPY requirements.txt /app/
 
+# 安装系统编译工具
+RUN apt-get update && apt-get install -y build-essential
+
 # 创建 Conda 环境
-RUN conda install -y gxx_linux-64 && \
-    conda env create -f environment.yml && \
-    conda clean -afy
+RUN conda env create -f environment.yml && conda clean -afy
+
 # 设置 SHELL 以便 conda activate 能生效
 SHELL ["/bin/bash", "-c"]
+
 # 安装 Python 依赖
 RUN conda activate myenv 
 
