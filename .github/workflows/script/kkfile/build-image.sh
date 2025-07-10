@@ -3,8 +3,8 @@ ls
 cd kkFileView
 ls 
 mvn -B package -Dmaven.test.skip=true --file pom.xml
-docker build --platform linux/amd64 -t kkFileView:v4.4.0 .
-docker save -o kkFileView.tar kkFileView:v4.4.0
-mv  kkFileView.tar  .. 
+docker build --platform linux/amd64 -t kkfileview:v4.4.0 .
+docker save -o kkfileview.tar kkfileview:v4.4.0
+mv  kkfileview.tar  .. 
 ls 
 ls ..
