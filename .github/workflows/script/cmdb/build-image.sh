@@ -14,9 +14,9 @@ tar -xvf  cmdb.tar.gz
 cd cmdb
 ./image.sh
 
-# ls 
+# ls  sfswefrsfs 
 # bash build_image.sh
 # docker save -o milvus-cdc.tar docker.io/library/milvus-cdc:main-a54f09b
-# mv  milvus-cdc.tar  .. 
+# mv  milvus-cdc    .tar  .. 
 # ls 
 # ls ..
