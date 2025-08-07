@@ -8,14 +8,19 @@ go env -w GO111MODULE="auto"
 cd configcenter
 go mod tidy
 
-curl -L -o Tongsuo-8.3.2.tar.gz https://github.com/Tongsuo-Project/Tongsuo/archive/refs/tags/8.3.2.tar.gz
-ls
-tar -xvf Tongsuo-8.3.2.tar.gz
-cd Tongsuo-8.3.2
-mkdir -p /tmp/tongsuo
-./config --prefix=/tmp/tongsuo && make -j && make install
+# curl -L -o Tongsuo-8.3.2.tar.gz https://github.com/Tongsuo-Project/Tongsuo/archive/refs/tags/8.3.2.tar.gz
+# ls
+# tar -xvf Tongsuo-8.3.2.tar.gz
+# cd Tongsuo-8.3.2
+# mkdir -p /tmp/tongsuo
+# ./config --prefix=/tmp/tongsuo && make -j && make install
 
-TONGSUO_PATH=/tmp/tongsuo
+# TONGSUO_PATH=/tmp/tongsuo
+
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo bash -
+sudo apt-get install -y nodejs
+
+apt-get install g++ build-essential
 
 echo "编译"
 pwd
