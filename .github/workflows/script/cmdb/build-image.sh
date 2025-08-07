@@ -9,7 +9,8 @@ cd configcenter
 go mod tidy
 
 curl -L -o Tongsuo-8.3.2.tar.gz https://github.com/Tongsuo-Project/Tongsuo/archive/refs/tags/8.3.2.tar.gz
-tar -xvf Tongsuo-8.3.2
+ls
+tar -xvf Tongsuo-8.3.2.tar.gz
 cd Tongsuo-8.3.2
 ./config && make -j && make install
 
