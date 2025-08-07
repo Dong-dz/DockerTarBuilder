@@ -1,5 +1,5 @@
 echo "下载源码包"
-git clone https://github.com/TencentBlueKing/bk-cmdb configcenter
+git clone  -b release-v3.14.6  https://github.com/TencentBlueKing/bk-cmdb configcenter  --single-branch
 
 echo "安装依赖"
 pwd 
