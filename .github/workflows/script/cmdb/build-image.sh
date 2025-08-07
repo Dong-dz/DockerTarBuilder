@@ -8,6 +8,13 @@ go env -w GO111MODULE="auto"
 cd configcenter
 go mod tidy
 
+curl -O https://github.com/Tongsuo-Project/Tongsuo/archive/refs/tags/8.3.2.tar.gz
+tar -xvf 8.3.2.tar.gz
+cd 8.3.2
+./config && make && make install
+
+
+
 echo "编译"
 pwd
 ls
