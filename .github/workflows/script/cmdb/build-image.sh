@@ -21,7 +21,7 @@ echo "编译"
 pwd
 ls
 cd ../src
-make
+make ui
 make package
 
 echo "构建镜像"
