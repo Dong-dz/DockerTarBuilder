@@ -12,14 +12,15 @@ curl -L -o Tongsuo-8.3.2.tar.gz https://github.com/Tongsuo-Project/Tongsuo/archi
 ls
 tar -xvf Tongsuo-8.3.2.tar.gz
 cd Tongsuo-8.3.2
-./config && make -j && make install
+mkdir -p /tmp/tongsuo
+./config --prefix=/tmp/tongsuo && make -j && make install
 
-
+TONGSUO_PATH=/tmp/tongsuo
 
 echo "编译"
 pwd
 ls
-cd src
+cd ../src
 make
 make package
 
