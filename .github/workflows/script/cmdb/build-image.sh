@@ -5,11 +5,11 @@ git clone https://github.com/TencentBlueKing/bk-cmdb configcenter
 cd configcenter
 go mod tidy
 
-cd configcenter/src
+cd src
 make server
 make package
 
-cd configcenter/src/bin/pub/
+cd bin/pub/
 tar -xvf  cmdb.tar.gz
 cd cmdb
 ./image.sh
