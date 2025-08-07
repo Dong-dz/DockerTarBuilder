@@ -29,12 +29,12 @@
 # make ui
 # make package
 
-# echo "构建镜像"
-# pwd 
-# ls 
-# cd bin/pub/
-# tar -xvf  cmdb.tar.gz
-# # cd cmdb
-# # ./image.sh
+echo "构建镜像"
+pwd 
+ls 
+cd bin/pub/
+tar -xvf  cmdb.tar.gz
+cd cmdb
+./image.sh
 
 docker build -t cmdb_ui:20250807 . 
