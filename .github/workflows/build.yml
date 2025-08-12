@@ -18,6 +18,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set timestamp variable
+        id: set_time
+        run: echo "TIME=$(date +'%Y%m%d%H%M')" >> $GITHUB_ENV
+      
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
         with:
@@ -39,13 +43,13 @@ jobs:
         run: ./build-image.sh
 
       - name: 压缩镜像
-        run: tar -czf images.tar.gz *.tar  && ls
+        run: tar -czf images-${TIME}.tar.gz *.tar  && ls
 
       - name: 上传脚本
         uses: actions/upload-artifact@v4
         with:
-          name: images
-          path: ./.github/workflows/script/${{ github.event.inputs.server_name }}/images.tar.gz
+          name: images-${{ env.TIME }}
+          path: ./.github/workflows/script/${{ github.event.inputs.server_name }}/images-${{ env.TIME }}.tar.gz
           retention-days: 1  # 将保留天数设置为 1 天 最多可设置90天
 
       - name: Clean up intermediate files
