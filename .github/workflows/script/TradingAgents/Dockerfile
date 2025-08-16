@@ -26,8 +26,11 @@ RUN cd /opt/ && \
     git clone https://github.com/TauricResearch/TradingAgents.git
 
 RUN cd TradingAgents && \
-    conda create -n tradingagents python=3.13  && \
-    conda activate tradingagents   && \
+    conda create -n tradingagents python=3.13
+
+SHELL ["/bin/bash", "-c"]
+
+RUN conda activate tradingagents   && \
     pip install -r requirements.txt
 
 
