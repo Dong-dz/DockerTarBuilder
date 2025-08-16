@@ -22,8 +22,7 @@ FROM continuumio/miniconda3:25.3.1-1
 
 WORKDIR /opt
 
-RUN cd /opt/ && \
-    git clone https://github.com/TauricResearch/TradingAgents.git
+RUN git clone https://github.com/TauricResearch/TradingAgents.git
 
 RUN cd TradingAgents && \
     conda create -n tradingagents python=3.13
