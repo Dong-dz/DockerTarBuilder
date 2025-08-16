@@ -24,8 +24,6 @@ WORKDIR /opt
 
 RUN git clone https://github.com/TauricResearch/TradingAgents.git
 
-RUN cd TradingAgents
-
-RUN pip install -r requirements.txt
+RUN cd TradingAgents && ls && pip install -r requirements.txt
 
 CMD ["/bin/bash"]
