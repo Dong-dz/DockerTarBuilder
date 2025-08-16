@@ -24,7 +24,7 @@ WORKDIR /opt
 
 RUN git clone https://github.com/TauricResearch/TradingAgents.git
 
-RUN cd TradingAgents && \
+RUN ls && cd TradingAgents &&  ls && \
     conda create -n tradingagents python=3.13
 
 SHELL ["/bin/bash", "-c"]
