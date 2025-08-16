@@ -24,12 +24,8 @@ WORKDIR /opt
 
 RUN git clone https://github.com/TauricResearch/TradingAgents.git
 
-RUN ls && cd TradingAgents &&  ls && \
-    conda create -n tradingagents python=3.13
+RUN cd TradingAgents
 
-SHELL ["/bin/bash", "-c"]
-
-RUN conda init bash && \
-    bash -c "source ~/.bashrc && conda activate tradingagents && pip install -r requirements.txt"
+RUN pip install -r requirements.txt
 
 CMD ["/bin/bash"]
