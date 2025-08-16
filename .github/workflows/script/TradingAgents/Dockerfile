@@ -30,8 +30,7 @@ RUN cd TradingAgents && \
 
 SHELL ["/bin/bash", "-c"]
 
-RUN conda activate tradingagents   && \
-    pip install -r requirements.txt
-
+RUN conda init bash && \
+    bash -c "source ~/.bashrc && conda activate tradingagents && pip install -r requirements.txt"
 
 CMD ["/bin/bash"]
