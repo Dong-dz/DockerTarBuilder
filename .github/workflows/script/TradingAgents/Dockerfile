@@ -1,0 +1,34 @@
+# FROM continuumio/miniconda3:25.3.1-1
+
+#
+
+# #COPY ultralytics-main /app
+# COPY environment.yml /app/environment.yml
+# COPY requirements.txt /app/requirements.txt
+# #COPY venv /app/venv
+# RUN conda install -y gxx_linux-64
+# RUN conda env create -f environment.yml && \
+#     conda clean -afy && \
+#     /bin/bash -c "source activate myenv "
+# #/bin/bash -c "source activate myenv && pip install --upgrade pip && pip install  -r requirements.txt "
+
+
+# ENV PATH /opt/conda/envs/myenv/bin:$PATH
+
+# CMD ["/bin/bash"]
+
+
+FROM continuumio/miniconda3:25.3.1-1
+
+WORKDIR /opt
+
+RUN cd /opt/ && \
+    git clone https://github.com/TauricResearch/TradingAgents.git
+
+RUN cd TradingAgents && \
+    conda create -n tradingagents python=3.13  && \
+    conda activate tradingagents   && \
+    pip install -r requirements.txt
+
+
+CMD ["/bin/bash"]
